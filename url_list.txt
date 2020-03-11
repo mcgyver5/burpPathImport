@@ -1,0 +1,10 @@
+http://www.testsite.com
+http://www.morestuff.com
+https://www.meetup.com/PyMNtos-Twin-Cities-Python-User-Group/
+https://discordpy.readthedocs.io/en/latest/
+http://pythontutor.com/
+https://stackoverflow.com/
+https://www.reddit.com/r/coronavirus
+https://pragprog.com/titles?f[sort_by]=pubdate&f[category]=all&f[skill_level]=All&f[title_contains]="
+https://pragprog.com/titles?f[sort_by]=pubdate&f[category]=all&f[skill_level]=All&f[title_contains]="
+https://github.com/snoopysecurity/awesome-burp-extensions
