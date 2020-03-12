@@ -4,9 +4,6 @@ from java.io import PrintWriter
 from java.lang import RuntimeException
 from javax.swing.table import AbstractTableModel
 from javax.swing import JFileChooser
-from javax.swing.filechooser import FileNameExtensionFilter
-from javax.swing.filechooser import FileFilter
-
 from javax.swing import JPanel
 from javax.swing import JScrollPane
 from javax.swing import JSplitPane
@@ -95,7 +92,7 @@ class BurpExtender(IBurpExtender, ITab):
         if result == JFileChooser.APPROVE_OPTION:
             f = fileChooser.getSelectedFile()
             fileName = f.getPath()
-            self.populateJTable(f)
+            self.populateTableModel(f)
     ## Implement ITab:
     def getTabCaption(self):
         return "Import URLs"
