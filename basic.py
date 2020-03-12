@@ -4,10 +4,6 @@ from java.lang import RuntimeException
 
 class BurpExtender(IBurpExtender):
     
-    #
-    # implement IBurpExtender
-    #
-    
     def	registerExtenderCallbacks(self, callbacks):
     
         # set our extension name
