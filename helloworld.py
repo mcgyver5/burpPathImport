@@ -9,7 +9,7 @@ from javax.swing import JButton
 from javax.swing import JTable
 from urlparse import urlparse
 
-class BurpExtender(IBurpExtender):
+class BurpExtender(IBurpExtender, ITab):
     
     #
     # implement IBurpExtender
@@ -52,6 +52,8 @@ class BurpExtender(IBurpExtender):
         #create and populate a jtable:
         initial_row = ['http', 'www.meetup.com', 'PyMNtos-Twin-Cities-Python-User-Group/events/267977020/','','','']
         self.fileTable = JTable(ResourceTableModel(initial_row))
+        # set up the Tab:
+        
         self.infoPanel = JPanel()
         footerPanel = JPanel()
         footerPanel.add(JLabel("by Tim mcgyver5 McGuire"))
@@ -59,7 +61,16 @@ class BurpExtender(IBurpExtender):
         self.infoPanel.add(JLabel("THIS IS INFORMATION PANE"))
         self.infoPanel.add(self._chooseFileButton)
 
+        ## this is a split inside the top component
+        topPane = JSplitPane(JSplitPane.VERTICAL_SPLIT)
+        
+        topPane.setTopComponent(self.infoPanel)
+        topPane.setBottomComponent(scrollpane)
         self._chooseFileButton.setEnabled(True)
+        self._splitpane = JSplitPane(JSplitPane.VERTICAL_SPLIT)
+        self._splitpane.setTopComponent(topPane)
+        self._splitpane.setBottomComponent(footerPanel)
+        callbacks.addSuiteTab(self)
 
     def populateTableModel(self,results):
         tableModel = self.fileTable.getModel()
@@ -77,6 +88,12 @@ class BurpExtender(IBurpExtender):
             f = fileChooser.getSelectedFile()
             fileName = f.getPath()
             self.populateJTable(f)
+    ## Implement ITab:
+    def getTabCaption(self):
+        return "Import URLs"
+    
+    def getUiComponent(self):
+        return self._splitpane
 
 class ResourceTableModel(AbstractTableModel):
 
