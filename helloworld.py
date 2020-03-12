@@ -78,10 +78,10 @@ class BurpExtender(IBurpExtender, ITab):
             tableModel.addRow(row)
 
     def fileButtonClick(self,callbacks):
-        fileTypeList = ["war","ear","zip","txt","json"]
-        warFilter = FileNameExtensionFilter("war", fileTypeList)
+        fileTypeList = ["csv","txt","json"]
+        txtFilter = FileNameExtensionFilter("txt", fileTypeList)
         fileChooser = JFileChooser()
-        fileChooser.addChoosableFileFilter(warFilter)
+        fileChooser.addChoosableFileFilter(txtFilter)
         result = fileChooser.showOpenDialog(self._splitpane)
 
         if result == JFileChooser.APPROVE_OPTION:
