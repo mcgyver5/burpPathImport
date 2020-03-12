@@ -60,14 +60,15 @@ class BurpExtender(IBurpExtender, ITab):
         
         self.infoPanel = JPanel()
         footerPanel = JPanel()
-        footerPanel.add(JLabel("by Tim mcgyver5 McGuire"))
+
+        footerPanel.add(JLabel("by mcgyver5 "))
         self._chooseFileButton = JButton("OPEN Local FILE", actionPerformed=self.fileButtonClick)
-        self.infoPanel.add(JLabel("THIS IS INFORMATION PANE"))
+        self.infoPanel.add(JLabel("INFORMATION PANE"))
+
         self.infoPanel.add(self._chooseFileButton)
         scrollpane = JScrollPane(self.fileTable)
         ## this is a split inside the top component
         topPane = JSplitPane(JSplitPane.VERTICAL_SPLIT)
-        
         topPane.setTopComponent(self.infoPanel)
         topPane.setBottomComponent(scrollpane)
         self._chooseFileButton.setEnabled(True)
