@@ -61,7 +61,7 @@ class BurpExtender(IBurpExtender, ITab):
         self.infoPanel = JPanel()
         footerPanel = JPanel()
         footerPanel.add(JLabel("by Tim mcgyver5 McGuire"))
-        self._chooseFileButton = JButton("OPEN WAR FILE", actionPerformed=self.fileButtonClick)
+        self._chooseFileButton = JButton("OPEN Local FILE", actionPerformed=self.fileButtonClick)
         self.infoPanel.add(JLabel("THIS IS INFORMATION PANE"))
         self.infoPanel.add(self._chooseFileButton)
         scrollpane = JScrollPane(self.fileTable)
