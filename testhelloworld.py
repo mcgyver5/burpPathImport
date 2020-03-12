@@ -5,9 +5,12 @@ from burp import IBurpExtender
 import helloworld
 
 class TestHello(unittest.TestCase):
+    def setUp(self):
+        self.ext = helloworld.BurpExtender()
+        self.txtFile = open("url_list.txt")
+
     def test_hello(self):
-        e = helloworld.BurpExtender()
-        response = e.hello()
+        response = self.ext.hello()
         self.assertEqual(response, "hello")
     def test_hello_tablemodel(self):
         e = helloworld.ResourceTableModel()
@@ -20,36 +23,29 @@ class TestHello(unittest.TestCase):
 
     def test_one_row(self):
         mock = MockCallbacks()
-        ext = helloworld.BurpExtender()
-        ext.registerExtenderCallbacks(mock)
-        model = ext.fileTable
+        self.ext.registerExtenderCallbacks(mock)
+        model = self.ext.fileTable
         rowCount = model.getRowCount()
 
         self.assertEqual(rowCount,1)
     
     def test_file_import(self):
-        file = open("url_list.txt")
-        ext = helloworld.BurpExtender()
-        result = ext.process_file(file)
+        result = self.ext.process_file(self.txtFile)
         result_len = len(result)
         self.assertEqual(result_len,10)
     
     def test_first_result(self):
-        file = open("url_list.txt")
-        ext = helloworld.BurpExtender()
-        result = ext.process_file(file)
+        result = self.ext.process_file(self.txtFile)
         firstResult = result[0]
         firstScheme = firstResult[0]
         self.assertEqual(firstScheme,"http")
     
     def test_populate_tablemodel(self):
         mock = MockCallbacks()
-        ext = helloworld.BurpExtender()
-        ext.registerExtenderCallbacks(mock)
-        file = open("url_list.txt")
-        result = ext.process_file(file)
-        ext.populateTableModel(result)
-        tableModel = ext.fileTable.getModel()
+        self.ext.registerExtenderCallbacks(mock)
+        result = self.ext.process_file(self.txtFile)
+        self.ext.populateTableModel(result)
+        tableModel = self.ext.fileTable.getModel()
         rows = tableModel.getRowCount()
         self.assertEqual(rows, 11)
         
