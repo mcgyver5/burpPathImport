@@ -49,6 +49,11 @@ class TestHello(unittest.TestCase):
         rows = tableModel.getRowCount()
         self.assertEqual(rows, 11)
         
-       
+    def test_user_clicks_fileChooser(self):
+        mock = MockCallbacks()
+        self.ext.registerExtenderCallbacks(mock)
+        self.ext.fileButtonClick(mock)
+        self.assertEqual(1,1)
+
 if __name__ == '__main__':
     unittest.main()
